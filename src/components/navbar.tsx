@@ -7,6 +7,7 @@ import Link from 'next/link';
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeItems, setActiveItems] = useState<Record<string, boolean>>({});
 
   // Handle scroll event to change navbar appearance
   useEffect(() => {
@@ -48,12 +49,25 @@ export default function Navbar() {
 
   // Function to determine if current route matches the nav item
   const isActivePath = (path: string) => {
-    if (typeof window !== 'undefined') {
-      const currentPath = window.location.pathname;
-      return currentPath === path || (path !== '/' && currentPath.startsWith(path));
+    if (typeof window === 'undefined') {
+      // We're on the server, return false to ensure server/client initial render matches
+      return false;
     }
-    return false;
+    const currentPath = window.location.pathname;
+    return currentPath === path || (path !== '/' && currentPath.startsWith(path));
   };
+
+  // Update active items on client-side after component mounts
+  useEffect(() => {
+    const newActiveItems: Record<string, boolean> = {};
+    navItems.forEach(item => {
+      newActiveItems[item.href] = isActivePath(item.href);
+    });
+    setActiveItems(newActiveItems);
+    
+    // Optional: Update active items on route change if using Next.js router events
+    // This would require importing useRouter from next/navigation
+  }, []);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -95,11 +109,11 @@ export default function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`relative font-medium text-sm lg:text-base text-blue-100 hover:text-accent px-3 py-2 rounded-md transition-colors duration-300 ${isActivePath(item.href) ? 'text-accent' : ''}`}
-                    aria-current={isActivePath(item.href) ? 'page' : undefined}
+                    className={`relative font-medium text-sm lg:text-base text-blue-100 hover:text-accent px-3 py-2 rounded-md transition-colors duration-300 ${activeItems[item.href] ? 'text-accent' : ''}`}
+                    aria-current={activeItems[item.href] ? 'page' : undefined}
                   >
                     <span>{item.label}</span>
-                    <span className={`absolute left-0 bottom-0 h-0.5 bg-accent transition-all duration-300 ${isActivePath(item.href) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                    <span className={`absolute left-0 bottom-0 h-0.5 bg-accent transition-all duration-300 ${activeItems[item.href] ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                   </Link>
                 </li>
               ))}
@@ -164,13 +178,13 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     className={`text-base py-2.5 px-4 rounded-md ${
-                      isActivePath(item.href) 
+                      activeItems[item.href]
                         ? 'bg-accent/20 text-accent font-medium' 
                         : 'text-white hover:bg-blue-900/20'
                     } transition-colors duration-200`}
                     onClick={() => setMobileMenuOpen(false)}
                     role="menuitem"
-                    aria-current={isActivePath(item.href) ? 'page' : undefined}
+                    aria-current={activeItems[item.href] ? 'page' : undefined}
                   >
                     {item.label}
                   </Link>

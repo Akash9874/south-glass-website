@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://southglass.com'),
+  metadataBase: new URL('https://southglass.com'),
   title: {
     template: '%s | South Glass',
     default: "South Glass - Premium Glass Solutions"

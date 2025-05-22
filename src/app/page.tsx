@@ -88,13 +88,7 @@ export default function Home() {
       <section className="py-10 sm:py-12 md:py-16 relative overflow-hidden">
         {/* DE 2 Background */}
         <div 
-          className="absolute inset-0" 
-          style={{ 
-            backgroundImage: "url('/DE 2.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
+          className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black/90 to-black/80" 
         ></div>
         
         <div className="container mx-auto px-4 relative z-10">

@@ -7,6 +7,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import SectionHeading from '@/components/section-heading';
 import JsonLd from '@/components/JsonLd';
+import BrochureLink from '@/components/BrochureLink';
 
 // Add Resources page structured data
 const resourcesPageSchema = {
@@ -155,14 +156,14 @@ export default function ResourcesPage() {
                       <span>{activePreview === brochure.id ? 'Close Preview' : 'Quick View'}</span>
                     </button>
                     
-                    <a
+                    <BrochureLink
                       href={brochure.file}
                       download
                       className="flex-1 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-black px-4 py-3 rounded-xl transition-all duration-300"
                     >
                       <ArrowDown className="w-5 h-5" />
                       <span>Download</span>
-                    </a>
+                    </BrochureLink>
                   </div>
                 </div>
                 
@@ -182,7 +183,7 @@ export default function ResourcesPage() {
                         ></iframe>
                       </div>
                       <div className="mt-4 text-center">
-                        <a
+                        <BrochureLink
                           href={brochure.file}
                           target="_blank" 
                           rel="noopener noreferrer"
@@ -190,7 +191,7 @@ export default function ResourcesPage() {
                         >
                           <span>Open in full screen</span>
                           <ArrowDown className="w-4 h-4 rotate-[135deg]" />
-                        </a>
+                        </BrochureLink>
                       </div>
                     </div>
                   </div>

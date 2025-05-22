@@ -9,10 +9,10 @@
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build",
-    "optimize-images": "node scripts/image-optimization.js"
+    "optimize-images": "node scripts/image-optimization.js",
+    "generate-sri": "node scripts/generate-sri-hashes.js"
   },
   "dependencies": {
-    "@vercel/og": "^0.6.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.12.1",
@@ -24,6 +24,7 @@
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.11.2",
     "@next/bundle-analyzer": "^14.1.0",
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.0",

@@ -243,7 +243,7 @@ export default function ProductsPage() {
 
                 {/* Applications */}
                 {product.applications && (
-                  <div className="mb-6">
+                  <div>
                     <h4 className="font-medium mb-2 text-sm text-gray-300">Applications</h4>
                     <ul className="space-y-2">
                       {product.applications.slice(0, 2).map((application, index) => (
@@ -255,11 +255,6 @@ export default function ProductsPage() {
                     </ul>
                   </div>
                 )}
-                
-                <button className="w-full group bg-blue-500 text-black px-4 py-3 rounded-xl text-sm font-medium hover:bg-blue-500/90 transition-all flex items-center justify-center gap-2">
-                  Request Quote
-                  <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                </button>
               </div>
             </div>
           ))}

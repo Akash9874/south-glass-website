@@ -6,7 +6,6 @@ export default function CriticalPreload() {
   useEffect(() => {
     // Images to preload
     const criticalImages = [
-      '/hero-image.jpg',
       '/glass-hero-bg.jpg',
       '/SG-LOGO-01.png'
     ];

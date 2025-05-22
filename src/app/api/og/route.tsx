@@ -1,4 +1,4 @@
-import { ImageResponse } from '@vercel/og';
+import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 
 export const runtime = 'edge';
@@ -138,7 +138,6 @@ export async function GET(request: NextRequest) {
         headers: {
           'Cache-Control': 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=31536000',
           'CDN-Cache-Control': 'public, max-age=86400, s-maxage=86400',
-          'Vercel-CDN-Cache-Control': 'public, max-age=86400, s-maxage=86400',
         },
       },
     );
